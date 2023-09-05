@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import Button from '../../components/Button';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -65,9 +66,10 @@ function Login() {
                             Lembrar
                         </label>
                     </div>
-                    <button type="submit">Login</button>
+                    <Button type="submit">Login</Button>
+                    
                 </form>
-                <button onClick={() => navigate('/cadastro')} type="submit" id='signup'>Cadastrar</button>
+                <Button onClick={() => navigate('/cadastro')} type="submit" id='signup'>Cadastrar</Button>
             </div>
         </div>
     );
