@@ -1,4 +1,3 @@
-// authenticateJWT.js
 const jwt = require('jsonwebtoken');
 
 function authenticateJWT(req, res, next) {
@@ -8,14 +7,13 @@ function authenticateJWT(req, res, next) {
     return res.status(401).json({ erro: 'Acesso não autorizado' });
   }
 
-  try {
-    const user = jwt.verify(token, 'your-secret-key'); // Substitua pela sua chave secreta
-
-    req.user = user;
-    next();
-  } catch (error) {
+  if (!jwt.isValid(token, 'Chapeco2022@')) {
     return res.status(403).json({ erro: 'Token inválido' });
   }
+
+  const user = jwt.verify(token, 'Chapeco2022@'); 
+  req.user = user;
+  next();
 }
 
 module.exports = authenticateJWT;

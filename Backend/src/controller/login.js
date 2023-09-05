@@ -1,15 +1,21 @@
 const jwt = require('jsonwebtoken');
-const { User } = require('../model/user'); 
-const SECRET_KEY = 'sua_chave_secreta'; 
+
+const User = require('../model/user');
+const SECRET_KEY = 'Chapeco2022@';
 
 const login = async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ where: { username, password } });
+    // O modelo `User` está definido aqui, então o método `findOne()` pode ser chamado
+    const user = await User.findOne({ where: { email, password } });
+
     if (user) {
-      const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '1h' });
-      res.status(200).json({ token });
+      // Autenticação bem-sucedida, gerar um token JWT
+      const token = jwt.sign({ email }, SECRET_KEY, { expiresIn: 3600 });
+
+      // Retornar o token JWT no formato JSON
+      res.status(200).json({ auth: true, token });
     } else {
       res.status(401).json({ erro: 'Credenciais inválidas' });
     }

@@ -1,17 +1,33 @@
 const User = require('../model/user');
+const multer = require('multer');
+const path = require('path');
+const jwt = require('jsonwebtoken');
 
-
-
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: path.join(__dirname, 'uploads'),
+    filename: (req, file, cb) => {
+      cb(null, file.originalname);
+    },
+  }),
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype === 'image/png' || file.mimetype === 'image/jpeg') {
+      cb(true);
+    } else {
+      cb(false, 'O arquivo deve ser uma imagem PNG ou JPEG.');
+    }
+  },
+});
 
 const cadastrarUsuario = async (req, res) => {
   try {
-    const { username, email, password, photo } = req.body;
-    const existingUser = await User.findOne({ where: { email } });
-    if (existingUser) {
-      return res.status(400).json({ message: 'Este email já está em uso.' });
-    }
-    const newUser = await User.create({ username, email, password, photo });
-    res.status(201).json(newUser);
+    const { username, email, password } = req.body;
+    const photo = await upload.single('photo');
+
+    // Criar um novo usuário no banco de dados
+    const newUser = await User.create({ username, email, password, photo: photo.filename });
+
+    res.status(201).json({ message: 'Cadastro bem-sucedido!' });
   } catch (error) {
     console.error('Erro no cadastro:', error);
     res.status(500).json({ message: 'Erro no servidor.' });

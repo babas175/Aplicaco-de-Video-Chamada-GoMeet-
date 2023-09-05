@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database/database'); // Importe o Sequelize configurado corretamente
 
-const Contato = sequelize.define('Contato', {
+const Contato = sequelize.define('contato', {
   nome: {
     type: DataTypes.STRING,
     allowNull: false
@@ -18,10 +18,6 @@ const Contato = sequelize.define('Contato', {
   dono: {
     type: DataTypes.STRING,
     allowNull: false,
-    references: {
-      model: 'Users', // Nome da tabela de referência (User)
-      key: 'username', // Campo da tabela de referência (username)
-    },
   },
 });
 

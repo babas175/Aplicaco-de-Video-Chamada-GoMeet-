@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database/database'); // Importe o Sequelize configurado corretamente
 
-const User = sequelize.define('User', {
+const User = sequelize.define('user', {
   username: {
     type: DataTypes.STRING,
     primaryKey: true,
@@ -19,7 +19,7 @@ const User = sequelize.define('User', {
     allowNull: false,
   },
   photo: {
-    type: DataTypes.STRING,
+    type: DataTypes.BLOB,
     allowNull: true,
   },
 });

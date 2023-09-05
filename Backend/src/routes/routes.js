@@ -6,26 +6,24 @@ const authenticateJWT = require('../middleware/authenticateJWT');
 const authController = require('../middleware/authenticateJWT');
 const login  = require('../controller/login');
 
-router.get('/login', login.login);
+
+router.post('/login', login.login);
 
 router.post('/cadastro', userController.cadastrarUsuario);
 
-router.get('/listarUsuarios', userController.obterUsuarios);
+router.get('/listarUsuarios',authenticateJWT, userController.obterUsuarios);
 
-router.get('/usuarios/:id', userController.obterUsuarioPorId);
+router.get('/usuarios/:id', authenticateJWT, userController.obterUsuarioPorId);
 
-router.post('/contatos', contatoController.criarContato);
+router.post('/contatos', authenticateJWT, contatoController.criarContato);
 
 router.get('/contatos', authenticateJWT, contatoController.listarContatos);
 
-router.get('/contatos/:nome', contatoController.buscarContatoPorNome);
+router.get('/contatos/:nome', authenticateJWT, contatoController.buscarContatoPorNome);
 
-router.put('/contatos/:nome', contatoController.atualizarContatoPorNome);
+router.put('/contatos/:nome', authenticateJWT, contatoController.atualizarContatoPorNome);
 
-router.delete('/contatos/:nome', contatoController.excluirContatoPorNome);
-
-
-
+router.delete('/contatos/:nome', authenticateJWT, contatoController.excluirContatoPorNome);
 
 
 
