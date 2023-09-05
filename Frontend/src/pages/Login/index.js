@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import Button from '../../components/Button';
+import axios from 'axios';
+
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -21,12 +23,30 @@ function Login() {
         setRemember(event.target.checked);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('Email:', email);
-        console.log('Senha:', password);
-        console.log('Remember Password:', rememberPassword);
+    
+        const formData = {
+            email: email,
+            password: password,
+        };
+    
+        try {
+            const response = await axios.post('http://localhost:3000/login', formData);
+    
+            if (response.status === 200) {
+                // Abaixo voce deves devem colocar em qual pagina deveria ir no caso que o login foi feito com sucesso
+                console.log('Login bem-sucedido! Token:', response.data.token);
+                //por exemplo Abaixo
+                //history.push('/perfil')
+            } else {
+                console.log('Credenciais inválidas');
+            }
+        } catch (error) {
+            console.error('Erro ao fazer login:', error);
+        }
     };
+    
 
     return (
         <div className="center-box">
