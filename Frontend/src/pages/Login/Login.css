@@ -17,15 +17,15 @@
   align-items: center;
   justify-content: center;
   
-  h3 {
-    color: #8a2be2;
-    text-align: center;
-  }
-  
-  h6 {
-    color: gray;
-    text-align: center;
-  }
+}
+.login-box h3 {
+  color: #8a2be2;
+  text-align: center;
+}
+
+.login-box h6 {
+  color: gray;
+  text-align: center;
 }
 
 .form-group {
