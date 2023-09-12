@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import Button from '../../components/Button';
-import axios from 'axios';
+import rest from '../../api';
 
 
 function Login() {
@@ -32,7 +32,7 @@ function Login() {
         };
     
         try {
-            const response = await axios.post('http://localhost:3000/login', formData);
+            const response = await rest.post('login', formData);
     
             if (response.status === 200) {
                 // Abaixo voce deves devem colocar em qual pagina deveria ir no caso que o login foi feito com sucesso
