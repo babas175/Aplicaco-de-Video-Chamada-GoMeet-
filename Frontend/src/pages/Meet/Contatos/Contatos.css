@@ -1,13 +1,3 @@
-.page-container {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: flex-start; 
-    height: 100vh; 
-    padding: 20px; 
-    margin-left: 280px;
-}
-  
 .search-bar {
     width: 100%; 
     margin-bottom: 20px; 
@@ -20,13 +10,8 @@
     width: 100%; 
     padding: 10px; 
 }
-.page-container h1{
-    color: #8a2be2;
-    text-align: center;
-}
   
 .contacts-container {
-    
     border: 1px solid #ccc; 
     padding: 20px; 
     border-radius: 4px; 
@@ -43,20 +28,4 @@
     margin-bottom: 10px; 
     background-color: #ffffff;
 }
-.sidebar {
-    background-color: #892be2e5;
-    color: #fff; 
-    width: 200px; 
-    position: fixed; 
-    top: 0;
-    left: 0;
-    height: 100%; 
-    padding: 20px;
-}
-.sidebar li{
-    list-style: none;
-    margin-bottom: 10px;
-    
-}
-
   
