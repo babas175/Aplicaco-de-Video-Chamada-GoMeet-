@@ -46,7 +46,7 @@ function Contatos(){
                     <ul>
                         {filteredContacts.map((contato) => (
                             <li key={contato.id} className="contact-item">
-                            <strong>{contato.nome}</strong> - {contato.email}
+                                <strong>{contato.nome}</strong> - {contato.email}
                             </li>
                         ))}
                     </ul>

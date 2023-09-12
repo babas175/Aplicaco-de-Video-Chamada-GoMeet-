@@ -9,7 +9,12 @@ const AppRouter = () => {
             <Routes>
                 <Route path='/login' element={<Login />}/>
                 <Route path='/cadastro' element={<Cadastro />}/>
-                <Route path='/contatos' element={<Contatos />}/>
+                <Route path='/meet/'>
+                    <Route index path='contatos' element={<Contatos />}/>
+                    <Route index path='chamada' element={<div>Não implementado</div>}/>
+                    <Route index path='perfil' element={<div>Não implementado</div>}/>
+                    <Route index path='historico' element={<div>Não implementado</div>}/>
+                </Route>
             </Routes>
         </Router>
     );
