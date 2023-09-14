@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
-//import Button from '../../components/Button';
 import rest from '../../api';
-import { Button} from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Heading, Input, InputGroup} from '@chakra-ui/react';
 
 
 function Login() {
@@ -50,49 +49,45 @@ function Login() {
     
 
     return (
-        <div className="center-box">
-            <div className="login-box">
-                <h3>Login</h3>
-                <h6>Entre ou Cadastre-se</h6>
-                <form onSubmit={handleSubmit}>
-                    <div className="input-group">
-            
-                        <input
+        <Box className="center-box">
+            <Box className="login-box">
+                <Heading as='h3'>Login</Heading>
+                <Heading as='h6'>Entre ou Cadastre-se</Heading>
+                <FormControl onSubmit={handleSubmit}>
+                    <InputGroup>
+                        <Input 
                             type="email"
                             id="email"
                             value={email}
                             onChange={handleEmailChange}
                             placeholder='Email'
                         />
-                    </div>
-        
-                    <div className="input-group">
-            
-                        <input
+                    </InputGroup>
+                    <InputGroup>
+                        <Input 
                             type="password"
                             id="password"
                             value={password}
                             onChange={handlePasswordChange}
                             placeholder='Senha'
                         />
-                    </div>
-                    <div className="input-group checkbox-group">
-                        <input 
+                    </InputGroup>
+                    <InputGroup className='checkbox-group'>
+                        <Input
                             type="checkbox"
                             checked={rememberPassword}
                             onChange={handleRememberChange}
                             id="rememberPassword"
                         />
-                        <label htmlFor="rememberPassword" className="checkbox-label">
+                        <FormLabel htmlFor="rememberPassword" className="checkbox-label">
                             Lembrar
-                        </label>
-                    </div>
+                        </FormLabel>
+                    </InputGroup>
                     <Button type="submit">Login</Button>
-                    
-                </form>
-                <Button onClick={() => navigate('/cadastro')} type="submit">Cadastrar</Button>
-            </div>
-        </div>
+                    <Button onClick={() => navigate('/cadastro')}>Cadastrar</Button>
+                </FormControl>
+            </Box>
+        </Box>
     );
 }
 
