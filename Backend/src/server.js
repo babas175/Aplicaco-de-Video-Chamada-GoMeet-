@@ -31,7 +31,15 @@ sequelize.sync({ force: true })
       photo: 'link_para_foto_de_perfil_padrao',
     });
 
+    const contatos = await contato.create({
+      nome: 'Sebastien',
+      celular: '(49) 98504-8890',
+      email: 'lubin@gmail.com',
+      dono: 'lubin@gmail.com',
+    })
+
     console.log('Usuário padrão inserido:', user.toJSON());
+    console.log('Usuário padrão inserido:', contatos.toJSON());
   })
   .catch((error) => {
     console.error('Erro ao sincronizar tabelas do banco de dados:', error);
