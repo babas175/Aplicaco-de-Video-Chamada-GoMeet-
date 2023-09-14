@@ -4,20 +4,20 @@ const sequelize = require('./database/database');
 const User = require('./model/user'); 
 const contato = require('./model/contato'); 
 const routes = require('./routes/routes');
-const cors = require('cors'); // Importe o pacote cors
+const cors = require('cors'); 
 
 const corsOptions = {
-  origin: 'http://localhost:3001', // Substitua pelo endereço do seu frontend
+  origin: 'http://localhost:3000', // Substitua pelo endereço do seu frontend
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204,
 };
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(cors(corsOptions)); // Configuração do CORS
+app.use(cors(corsOptions)); 
 
 sequelize.sync({ force: true })
   .then(async () => {
@@ -27,7 +27,7 @@ sequelize.sync({ force: true })
     const user = await User.create({
       username: 'usuariopadrao',
       email: 'lubin@gmail.com',
-      password: 'Chapeco2022', // Lembre-se de criptografar a senha em um ambiente real
+      password: 'Chapeco2022', 
       photo: 'link_para_foto_de_perfil_padrao',
     });
 
