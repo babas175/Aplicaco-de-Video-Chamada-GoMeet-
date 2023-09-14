@@ -38,7 +38,7 @@ function Login() {
                 // Abaixo voce deves devem colocar em qual pagina deveria ir no caso que o login foi feito com sucesso
                 console.log('Login bem-sucedido! Token:', response.data.token);
                 //por exemplo Abaixo
-                //history.push('/perfil')
+                navigate('../Meet/contatos');
             } else {
                 console.log('Credenciais inválidas');
             }
