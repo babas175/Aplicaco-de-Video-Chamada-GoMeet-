@@ -48,7 +48,7 @@ function Cadastro() {
         
 
         try {
-            const response = await rest.post('http://localhost:3000/cadastro', formData);
+            const response = await rest.post('cadastro', formData);
 
             if (response.status === 201) {
                 console.log('Cadastro bem-sucedido!');

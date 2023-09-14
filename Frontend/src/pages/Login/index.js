@@ -43,7 +43,7 @@ function Login() {
                 console.log('Credenciais inválidas');
             }
         } catch (error) {
-            console.error('Erro ao fazer login:', error);
+            navigate('../login');
         }
     };
     
