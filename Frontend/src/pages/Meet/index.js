@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import './Meet.css';
 
 const Meet = () => {
@@ -7,10 +7,18 @@ const Meet = () => {
             <div className='sidebar'>
                 <h2>Go-Meet</h2>
                 <ul>
-                    <li>Iniciar chamada</li>
-                    <li>Seus contatos</li>
-                    <li>Seu perfil</li>
-                    <li>Suas gravações</li>
+                    <li>
+                        <Link to='chamada'>Iniciar chamada</Link>
+                    </li>
+                    <li>
+                        <Link to='contatos'>Seus contatos</Link>
+                    </li>
+                    <li>
+                        <Link to='perfil'>Seu perfil</Link>
+                    </li>
+                    <li>
+                        <Link to='historico'>Suas gravações</Link>
+                    </li>
                     <li>Sair</li>
                 </ul>
             </div>
