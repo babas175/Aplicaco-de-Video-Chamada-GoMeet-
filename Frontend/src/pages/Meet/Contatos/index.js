@@ -15,6 +15,15 @@ function Contatos(){
     const filteredContacts = contatos.filter((contato) =>
         contato.nome.toLowerCase().includes(searchName.toLowerCase())
     );
+    // const [modal, setModal] = useState(false);
+    // const [contato, setContato] = useState(null);
+
+    // const handleOpenModal = (contato) => {
+    //     setContato(contato);
+    //     setModal(true);
+    // };
+
+
     return(
         <>
             <h1>Buscar Contatos</h1>
