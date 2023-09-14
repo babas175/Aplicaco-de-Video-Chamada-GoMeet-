@@ -19,7 +19,9 @@ const Meet = () => {
                     <li>
                         <Link to='historico'>Suas gravações</Link>
                     </li>
-                    <li>Sair</li>
+                    <li>
+                        <Link to='/login'>Sair</Link>
+                    </li>
                 </ul>
             </div>
             <div className='page-container'>

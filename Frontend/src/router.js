@@ -11,10 +11,11 @@ const AppRouter = () => {
                 <Route path='/login' element={<Login />}/>
                 <Route path='/cadastro' element={<Cadastro />}/>
                 <Route path='/meet/' element={<Meet />}>
-                    <Route index path='contatos' element={<Contatos />}/>
-                    <Route index path='chamada' element={<div>Não implementado</div>}/>
-                    <Route index path='perfil' element={<div>Não implementado</div>}/>
-                    <Route index path='historico' element={<div>Não implementado</div>}/>
+                    <Route index element={<Contatos />}/>
+                    <Route path='contatos' element={<Contatos />}/>
+                    <Route path='chamada' element={<div>Não implementado</div>}/>
+                    <Route path='perfil' element={<div>Não implementado</div>}/>
+                    <Route path='historico' element={<div>Não implementado</div>}/>
                 </Route>
             </Routes>
         </Router>
