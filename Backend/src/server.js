@@ -4,7 +4,7 @@ const sequelize = require('./database/database');
 const User = require('./model/user'); 
 const contato = require('./model/contato'); 
 const routes = require('./routes/routes');
-const cors = require('cors'); 
+const cors = require('cors'); // Importe o pacote cors
 
 const corsOptions = {
   origin: 'http://localhost:3000', // Substitua pelo endereço do seu frontend
@@ -14,10 +14,10 @@ const corsOptions = {
 };
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(cors(corsOptions)); 
+app.use(cors(corsOptions)); // Configuração do CORS
 
 sequelize.sync({ force: true })
   .then(async () => {
@@ -27,19 +27,11 @@ sequelize.sync({ force: true })
     const user = await User.create({
       username: 'usuariopadrao',
       email: 'lubin@gmail.com',
-      password: 'Chapeco2022', 
+      password: 'Chapeco2022', // Lembre-se de criptografar a senha em um ambiente real
       photo: 'link_para_foto_de_perfil_padrao',
     });
 
-    const contatos = await contato.create({
-      nome: 'Sebastien',
-      celular: '(49) 98504-8890',
-      email: 'lubin@gmail.com',
-      dono: 'lubin@gmail.com',
-    })
-
     console.log('Usuário padrão inserido:', user.toJSON());
-    console.log('Usuário padrão inserido:', contatos.toJSON());
   })
   .catch((error) => {
     console.error('Erro ao sincronizar tabelas do banco de dados:', error);
