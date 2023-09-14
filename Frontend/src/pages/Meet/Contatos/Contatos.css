@@ -1,0 +1,31 @@
+.search-bar {
+    width: 100%; 
+    margin-bottom: 20px; 
+    display: flex;
+    align-items: center; 
+    
+}
+  
+.search-input {
+    width: 100%; 
+    padding: 10px; 
+}
+  
+.contacts-container {
+    border: 1px solid #ccc; 
+    padding: 20px; 
+    border-radius: 4px; 
+    background-color: #ffffff; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    width: 95%;
+    
+}
+  
+.contact-item {
+    list-style: none; 
+    margin-bottom: 10px; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    background-color: #ffffff;
+}
+  

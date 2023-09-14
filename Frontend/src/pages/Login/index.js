@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
-import axios from 'axios';
+import rest from '../../api';
+import { Box, Button, FormControl, FormLabel, Heading, Input, InputGroup} from '@chakra-ui/react';
 
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberPassword, setRemember] = useState(false);
+    const navigate = useNavigate();
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -29,7 +32,7 @@ function Login() {
         };
     
         try {
-            const response = await axios.post('http://localhost:3000/login', formData);
+            const response = await rest.post('login', formData);
     
             if (response.status === 200) {
                 // Abaixo voce deves devem colocar em qual pagina deveria ir no caso que o login foi feito com sucesso
@@ -46,48 +49,45 @@ function Login() {
     
 
     return (
-        <div className="center-box">
-            <div className="login-box">
-                <h3>Login</h3>
-                <h6>Entre ou Cadastre-se</h6>
-                <form onSubmit={handleSubmit}>
-                    <div className="input-group">
-            
-                        <input
+        <Box className="center-box">
+            <Box className="login-box">
+                <Heading as='h3'>Login</Heading>
+                <Heading as='h6'>Entre ou Cadastre-se</Heading>
+                <FormControl onSubmit={handleSubmit}>
+                    <InputGroup>
+                        <Input 
                             type="email"
                             id="email"
                             value={email}
                             onChange={handleEmailChange}
                             placeholder='Email'
                         />
-                    </div>
-        
-                    <div className="input-group">
-            
-                        <input
+                    </InputGroup>
+                    <InputGroup>
+                        <Input 
                             type="password"
                             id="password"
                             value={password}
                             onChange={handlePasswordChange}
                             placeholder='Senha'
                         />
-                    </div>
-                    <div className="input-group checkbox-group">
-                        <input 
+                    </InputGroup>
+                    <InputGroup className='checkbox-group'>
+                        <Input
                             type="checkbox"
                             checked={rememberPassword}
                             onChange={handleRememberChange}
                             id="rememberPassword"
                         />
-                        <label htmlFor="rememberPassword" className="checkbox-label">
+                        <FormLabel htmlFor="rememberPassword" className="checkbox-label">
                             Lembrar
-                        </label>
-                    </div>
-                    <button type="submit">Login</button>
-                </form>
-                <button type="submit" id='signup'>Cadastrar</button>
-            </div>
-        </div>
+                        </FormLabel>
+                    </InputGroup>
+                    <Button type="submit">Login</Button>
+                    <Button onClick={() => navigate('/cadastro')}>Cadastrar</Button>
+                </FormControl>
+            </Box>
+        </Box>
     );
 }
 
