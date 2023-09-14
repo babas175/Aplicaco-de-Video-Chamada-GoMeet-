@@ -1,32 +1,33 @@
 import { Link, Outlet } from 'react-router-dom';
 import './Meet.css';
+import { Box, Container, Heading, List, ListItem } from '@chakra-ui/react';
 
 const Meet = () => {
     return (
         <>
-            <div className='sidebar'>
-                <h2>Go-Meet</h2>
-                <ul>
-                    <li>
+            <Box className='sidebar'>
+                <Heading as="h2">Go-Meet</Heading>
+                <List>
+                    <ListItem>
                         <Link to='chamada'>Iniciar chamada</Link>
-                    </li>
-                    <li>
+                    </ListItem>
+                    <ListItem>
                         <Link to='contatos'>Seus contatos</Link>
-                    </li>
-                    <li>
+                    </ListItem>
+                    <ListItem>
                         <Link to='perfil'>Seu perfil</Link>
-                    </li>
-                    <li>
+                    </ListItem>
+                    <ListItem>
                         <Link to='historico'>Suas gravações</Link>
-                    </li>
-                    <li>
+                    </ListItem>
+                    <ListItem>
                         <Link to='/login'>Sair</Link>
-                    </li>
-                </ul>
-            </div>
-            <div className='page-container'>
+                    </ListItem>
+                </List>
+            </Box>
+            <Container className='page-container'>
                 <Outlet />
-            </div>
+            </Container>
         </>
     );
 };

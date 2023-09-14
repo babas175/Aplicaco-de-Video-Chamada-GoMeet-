@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 //import Button from '../../components/Button';
 import rest from '../../api';
-import { Button} from '@chakra-ui/react'
+import { Button} from '@chakra-ui/react';
 
 
 function Login() {
