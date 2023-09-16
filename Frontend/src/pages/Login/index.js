@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
-//import Button from '../../components/Button';
+import Button from '../../components/Button';
 import rest from '../../api';
-import { Button} from '@chakra-ui/react'
-
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -90,7 +88,7 @@ function Login() {
                     <Button type="submit">Login</Button>
                     
                 </form>
-                <Button onClick={() => navigate('/cadastro')} type="submit">Cadastrar</Button>
+                <Button onClick={() => navigate('/cadastro')} type="submit" id="signup">Cadastrar</Button>
             </div>
         </div>
     );
