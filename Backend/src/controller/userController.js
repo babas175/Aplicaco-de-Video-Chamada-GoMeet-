@@ -23,8 +23,6 @@ const cadastrarUsuario = async (req, res) => {
   try {
     const { username, email, password } = req.body;
     const photo = await upload.single('photo');
-
-    // Criar um novo usuário no banco de dados
     const newUser = await User.create({ username, email, password, photo: photo.filename });
 
     res.status(201).json({ message: 'Cadastro bem-sucedido!' });

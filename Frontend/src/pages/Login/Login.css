@@ -77,3 +77,8 @@ button:hover {
 #signup:hover{
   background-color: #ebebeb;
 }
+.error-message {
+  color: red; /* Define a cor vermelha para a mensagem de erro */
+  font-size: 14px; /* Define o tamanho da fonte desejado */
+  margin-top: 5px; /* Espaçamento superior para separar a mensagem do formulário */
+}

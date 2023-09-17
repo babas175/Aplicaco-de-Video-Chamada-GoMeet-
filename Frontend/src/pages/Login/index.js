@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import Button from '../../components/Button';
 import rest from '../../api';
-import { Box, Button, FormControl, FormLabel, Heading, Input, InputGroup} from '@chakra-ui/react';
-
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberPassword, setRemember] = useState(false);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const handleEmailChange = (event) => {
@@ -25,73 +25,71 @@ function Login() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-    
+
         const formData = {
             email: email,
             password: password,
         };
-    
+
         try {
             const response = await rest.post('login', formData);
-    
+
             if (response.status === 200) {
-                // Abaixo voce deves devem colocar em qual pagina deveria ir no caso que o login foi feito com sucesso
-                console.log('Login bem-sucedido! Token:', response.data.token);
-                //por exemplo Abaixo
-                navigate('../Meet/contatos');
+                const authToken = response.data.token;
+
+                // Redirecione para a página de Contatos e passe o token como estado
+                navigate('/Meet/contatos', { state: { token: authToken } });
             } else {
-                console.log('Credenciais inválidas');
+                setError('Credenciais inválidas');
             }
         } catch (error) {
-            navigate('../login');
+            console.error('Erro ao fazer login:', error);
+            setError('email ou senha invalida !');
         }
     };
-    
-
-    
 
     return (
-        <Box className="center-box">
-            <Box className="login-box">
-                <Heading as='h3'>Login</Heading>
-                <Heading as='h6'>Entre ou Cadastre-se</Heading>
-                <FormControl onSubmit={handleSubmit}>
-                    <InputGroup>
-                        <Input 
+        <div className="center-box">
+            <div className="login-box">
+                <h3>Login</h3>
+                <h6>Entre ou Cadastre-se</h6>
+                <form onSubmit={handleSubmit}>
+                    <div className="input-group">
+                        <input
                             type="email"
                             id="email"
                             value={email}
                             onChange={handleEmailChange}
                             placeholder='Email'
                         />
-                    </InputGroup>
-                    <InputGroup>
-                        <Input 
+                    </div>
+                    <div className="input-group">
+                        <input
                             type="password"
                             id="password"
                             value={password}
                             onChange={handlePasswordChange}
                             placeholder='Senha'
                         />
-                    </InputGroup>
-                    <InputGroup className='checkbox-group'>
-                        <Input
+                    </div>
+                    <div className="input-group checkbox-group">
+                        <input
                             type="checkbox"
                             checked={rememberPassword}
                             onChange={handleRememberChange}
                             id="rememberPassword"
                         />
-                        <FormLabel htmlFor="rememberPassword" className="checkbox-label">
+                        <label htmlFor="rememberPassword" className="checkbox-label">
                             Lembrar
-                        </FormLabel>
-                    </InputGroup>
+                        </label>
+                    </div>
                     <Button type="submit">Login</Button>
-                    <Button onClick={() => navigate('/cadastro')}>Cadastrar</Button>
-                </FormControl>
-            </Box>
-        </Box>
+                </form>
+                {error && <div className="error-message">{error}</div>} {/* Exibe a mensagem de erro */}
+                <Button onClick={() => navigate('/cadastro')} type="submit" id='signup'>Cadastrar</Button>
+            </div>
+        </div>
     );
 }
-
 
 export default Login;

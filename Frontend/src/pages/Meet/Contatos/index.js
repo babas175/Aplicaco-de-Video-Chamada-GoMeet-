@@ -1,30 +1,45 @@
-import React,{useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import './Contatos.css';
+import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-function Contatos(){
+function Contatos() {
     const [searchName, setSearchName] = useState('');
-    const [contatos] = useState([
-        { id: 1, nome: 'João', email: 'joao@email.com' },
-        { id: 2, nome: 'Maria', email: 'maria@email.com' },
-        { id: 3, nome: 'Luis', email: 'luis@email.com' },
-        { id: 4, nome: 'Ana', email: 'ana@email.com' }
-    ]);
+    const [contatos, setContatos] = useState([]);
+    const { state } = useLocation();
+    const navigate = useNavigate();
+    
     const handleSearchChange = (event) => {
         setSearchName(event.target.value);
     };
+
+    useEffect(() => {
+        const token = state?.token;
+
+        if (!token) {
+            navigate('/login');
+        }
+
+        const PegarOToken = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        axios.get('http://localhost:3001/contatos', PegarOToken)
+            .then((response) => {
+                setContatos(response.data);
+            })
+            .catch((error) => {
+                console.error('Erro ao buscar contatos:', error);
+            });
+    }, [state]);
+
     const filteredContacts = contatos.filter((contato) =>
         contato.nome.toLowerCase().includes(searchName.toLowerCase())
     );
-    // const [modal, setModal] = useState(false);
-    // const [contato, setContato] = useState(null);
 
-    // const handleOpenModal = (contato) => {
-    //     setContato(contato);
-    //     setModal(true);
-    // };
-
-
-    return(
+    return (
         <>
             <h1>Buscar Contatos</h1>
             <div className='search-bar'>
@@ -35,9 +50,8 @@ function Contatos(){
                     value={searchName}
                     onChange={handleSearchChange}
                 />
-                
             </div>
-            <div className="contacts-container">        
+            <div className="contacts-container">
                 <ul>
                     {filteredContacts.map((contato) => (
                         <li key={contato.id} className="contact-item">
@@ -48,6 +62,6 @@ function Contatos(){
             </div>
         </>
     );
-
 }
+
 export default Contatos;
