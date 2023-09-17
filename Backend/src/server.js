@@ -7,7 +7,7 @@ const routes = require('./routes/routes');
 const cors = require('cors');
 
 const corsOptions = {
-  origin: 'http://localhost:3000', 
+  origin: 'http://localhost:3002', 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204,
@@ -39,7 +39,7 @@ sequelize.sync({ force: true })
     });
 
     const contatos1 = await contato.create({
-      nome: 'babas',
+      nome: 'Diogo',
       celular: '(49) 98504-8890',
       email: 'Diogo2023@gmail.com',
       dono: 'lubin@gmail.com',

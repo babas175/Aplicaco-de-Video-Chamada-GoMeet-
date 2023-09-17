@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Contatos.css';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes,faPhone,faInfo } from '@fortawesome/free-solid-svg-icons';
 
 function Contatos() {
     const [searchName, setSearchName] = useState('');
@@ -38,8 +40,20 @@ function Contatos() {
     const filteredContacts = contatos.filter((contato) =>
         contato.nome.toLowerCase().includes(searchName.toLowerCase())
     );
+    const [modal, setModal] = useState(false);
+    const [contatoModal, setContatoModal] = useState(null);
 
-    return (
+    const handleOpenModal = (contato) => {
+        setContatoModal(contato);
+        setModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setContatoModal(null);
+        setModal(false);
+    };
+
+    return(
         <>
             <h1>Buscar Contatos</h1>
             <div className='search-bar'>
@@ -54,12 +68,34 @@ function Contatos() {
             <div className="contacts-container">
                 <ul>
                     {filteredContacts.map((contato) => (
-                        <li key={contato.id} className="contact-item">
-                            <strong>{contato.nome}</strong> - {contato.email}
-                        </li>
+                        <button onClick={() => handleOpenModal(contato)} id='openContato'>
+                            <li key={contato.id} className="contact-item">
+                                <strong>
+                                    {contato.nome}
+                                </strong>
+                            </li>
+                        </button>
                     ))}
                 </ul>
             </div>
+            {modal &&(
+                <>
+                    <div className="modal-backdrop"></div>
+                    <div className="modal">
+                        <FontAwesomeIcon
+                            icon={faTimes}
+                            className="close-icon"
+                            onClick={handleCloseModal}
+                        />
+                        <div className="modal-content">
+                            <h2>{contatoModal.nome}</h2>
+                            <p>{contatoModal.email}</p>
+                            <button id='addChamada'><FontAwesomeIcon icon={faPhone} /> Iniciar Chamada</button>
+                            <button id='detalhes'><FontAwesomeIcon icon={faInfo} /> Ver Perfil</button>
+                        </div>
+                    </div>
+                </>
+            )}
         </>
     );
 }
