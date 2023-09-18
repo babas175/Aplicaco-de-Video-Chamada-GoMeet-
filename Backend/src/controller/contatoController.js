@@ -1,6 +1,7 @@
 const User = require('../model/contato');
 const authenticateJWT = require('../middleware/authenticateJWT'); 
 const Contato = require('../model/contato');
+
 const criarContato = async (req, res) => {
     try {
       const { email } = req.user;

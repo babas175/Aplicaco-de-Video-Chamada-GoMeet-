@@ -36,8 +36,6 @@ function Login() {
 
             if (response.status === 200) {
                 const authToken = response.data.token;
-
-                // Redirecione para a página de Contatos e passe o token como estado
                 navigate('/Meet/contatos', { state: { token: authToken } });
             } else {
                 setError('Credenciais inválidas');
