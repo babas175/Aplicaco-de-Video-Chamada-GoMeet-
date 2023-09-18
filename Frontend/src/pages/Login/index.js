@@ -83,7 +83,7 @@ function Login() {
                     </div>
                     <Button type="submit">Login</Button>
                 </form>
-                {error && <div className="error-message">{error}</div>} {/* Exibe a mensagem de erro */}
+                {error && <div className="error-message">{error}</div>} 
                 <Button onClick={() => navigate('/cadastro')} type="submit" id='signup'>Cadastrar</Button>
             </div>
         </div>
