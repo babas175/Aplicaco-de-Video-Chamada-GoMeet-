@@ -42,7 +42,7 @@ function Login() {
             }
         } catch (error) {
             console.error('Erro ao fazer login:', error);
-            setError('email ou senha invalida !');
+            setError('Email ou Senha invalida !');
         }
     };
 
