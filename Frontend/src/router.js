@@ -17,6 +17,7 @@ const AppRouter = () => {
                     <Route path='perfil' element={<div>Não implementado</div>}/>
                     <Route path='historico' element={<div>Não implementado</div>}/>
                 </Route>
+                <Route index element={<Login />}/>
             </Routes>
         </Router>
     );
