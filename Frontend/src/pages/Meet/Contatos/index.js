@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './Contatos.css';
-import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes,faPhone,faInfo } from '@fortawesome/free-solid-svg-icons';
+import rest from '../../../api';
 
 function Contatos() {
     const [searchName, setSearchName] = useState('');
     const [contatos, setContatos] = useState([]);
     const { state } = useLocation();
-    const navigate = useNavigate();
     
     const handleSearchChange = (event) => {
         setSearchName(event.target.value);
@@ -18,17 +17,13 @@ function Contatos() {
     useEffect(() => {
         const token = state?.token;
 
-        if (!token) {
-            navigate('/login');
-        }
-
         const PegarOToken = {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         };
 
-        axios.get('http://localhost:3001/contatos', PegarOToken)
+        rest.get('http://localhost:3001/contatos', PegarOToken)
             .then((response) => {
                 setContatos(response.data);
             })

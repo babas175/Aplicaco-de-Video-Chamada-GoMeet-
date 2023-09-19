@@ -1,8 +1,21 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import './Meet.css';
 import { Box, Container, Heading, List, ListItem } from '@chakra-ui/react';
+import { useEffect } from 'react';
 
 const Meet = () => {
+    const { state } = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = state?.token;
+
+        if (!token) {
+            alert('Usuário não autenticado');
+            navigate('/login');
+        }
+    }, [] );
+    
     return (
         <>
             <Box className='sidebar'>
