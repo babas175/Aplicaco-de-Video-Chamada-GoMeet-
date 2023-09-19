@@ -1,6 +1,6 @@
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link as ReactLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import './Meet.css';
-import { Box, Container, Heading, List, ListItem } from '@chakra-ui/react';
+import { Box, Container, Heading, List, ListItem,Link } from '@chakra-ui/react';
 import { useEffect } from 'react';
 
 const Meet = () => {
@@ -22,19 +22,19 @@ const Meet = () => {
                 <Heading as="h2">Go-Meet</Heading>
                 <List>
                     <ListItem>
-                        <Link to='chamada' as={ReactLink} color={'white'}>Iniciar chamada</Link>
+                        <Link to='chamada'  state={state} as={ReactLink} color={'white'}>Iniciar chamada</Link>
                     </ListItem>
                     <ListItem>
-                        <Link to='contatos' as={ReactLink} color={'white'}>Seus contatos</Link>
+                        <Link to='contatos' state={state} as={ReactLink} color={'white'}>Seus contatos</Link>
                     </ListItem>
                     <ListItem>
-                        <Link to='perfil'>Seu perfil</Link>
+                        <Link to='perfil' state={state} as={ReactLink} color={'white'}>Seu perfil</Link>
                     </ListItem>
                     <ListItem>
-                        <Link to='historico'>Suas gravações</Link>
+                        <Link to='historico' state={state} as={ReactLink} color={'white'}>Suas gravações</Link>
                     </ListItem>
                     <ListItem>
-                        <Link to='/login'>Sair</Link>
+                        <Link to='/login' state={state} as={ReactLink} color={'white'}>Sair</Link>
                     </ListItem>
                 </List>
             </Box>
