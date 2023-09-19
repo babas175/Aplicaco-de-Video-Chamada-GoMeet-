@@ -1,6 +1,6 @@
-import { Link, Outlet } from 'react-router-dom';
+import {Outlet,Link as ReactLink } from 'react-router-dom';
 import './Meet.css';
-import { Box, Container, Heading, List, ListItem } from '@chakra-ui/react';
+import { Box, Container, Heading, List, ListItem, Link } from '@chakra-ui/react';
 
 const Meet = () => {
     return (
@@ -9,10 +9,10 @@ const Meet = () => {
                 <Heading as="h2">Go-Meet</Heading>
                 <List>
                     <ListItem>
-                        <Link to='chamada'>Iniciar chamada</Link>
+                        <Link to='chamada' as={ReactLink} color={'white'}>Iniciar chamada</Link>
                     </ListItem>
                     <ListItem>
-                        <Link to='contatos'>Seus contatos</Link>
+                        <Link to='contatos' as={ReactLink} color={'white'}>Seus contatos</Link>
                     </ListItem>
                     <ListItem>
                         <Link to='perfil'>Seu perfil</Link>
