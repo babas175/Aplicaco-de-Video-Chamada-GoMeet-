@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
-import Button from '../../components/Button';
+import { Button, Center, Heading } from '@chakra-ui/react';
 import rest from '../../api';
 
 function Login() {
@@ -47,10 +47,21 @@ function Login() {
     };
 
     return (
-        <div className="center-box">
-            <div className="login-box">
-                <h3>Login</h3>
-                <h6>Entre ou Cadastre-se</h6>
+        <Center height='90vh' bg='white'>
+            <Center
+                p={40}
+                borderRadius='10px'
+                flexDirection='column'
+                className='login-box'
+                boxShadow='0 0 10px rgba(0, 0, 0, 0.2)'
+                w={250}
+            >
+                <Heading as='h3' color='#8a2be2' textAlign='center'>
+                    Login
+                </Heading>
+                <Heading as='h6' color='gray' textAlign='center'>
+                    Entre ou Cadastre-se
+                </Heading>
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
                         <input
@@ -85,8 +96,8 @@ function Login() {
                 </form>
                 {error && <div className="error-message">{error}</div>} 
                 <Button onClick={() => navigate('/cadastro')} type="submit" id='signup'>Cadastrar</Button>
-            </div>
-        </div>
+            </Center>
+        </Center>
     );
 }
 
