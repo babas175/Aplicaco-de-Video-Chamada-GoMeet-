@@ -4,12 +4,12 @@ const sequelize = require('../database/database'); // Importe o Sequelize config
 const User = sequelize.define('user', {
   username: {
     type: DataTypes.STRING,
-    primaryKey: true,
     allowNull: false
   },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
+    primaryKey: true,
     validate: {
       isEmail: true,
     },
