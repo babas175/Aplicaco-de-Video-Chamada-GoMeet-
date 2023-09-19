@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Cadastro.css';
 import rest from '../../api';
-
+import { useNavigate } from 'react-router-dom';
 
 
 function Cadastro() {
@@ -9,6 +9,7 @@ function Cadastro() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const navigate = useNavigate();
     //const [photo, setPhoto] = useState(null);
 
 
@@ -52,8 +53,7 @@ function Cadastro() {
 
             if (response.status === 201) {
                 console.log('Cadastro bem-sucedido!');
-                // Redirecione o usuário para a página de login após o cadastro
-               
+                navigate('/login');
             } else {
                 console.log('Erro ao cadastrar usuário Front !');
             }
