@@ -93,7 +93,12 @@
 #deletarContato{
     background-color: rgb(218, 55, 55);
 }
+#deletarContato:hover{
+    background-color: rgb(218, 39, 39);
+}
 #addContato{
     background-color: rgb(56, 192, 56);
 }
-  
+#addContato:hover{
+    background-color: rgb(48, 207, 48);
+}  

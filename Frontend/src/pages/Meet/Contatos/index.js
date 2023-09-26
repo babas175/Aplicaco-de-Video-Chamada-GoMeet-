@@ -8,7 +8,7 @@ import rest from '../../../api';
 function Contatos() {
     const [searchName, setSearchName] = useState('');
     const [contatos, setContatos] = useState([]);
-    const contatoAdd = useState(true);
+    const possuiContatoAdd = useState(true);
     const { state } = useLocation();
     
     const handleSearchChange = (event) => {
@@ -123,8 +123,9 @@ function Contatos() {
                         <div className="modal-content">
                             <h2>{addContatoModal.nome}</h2>
                             <p>{addContatoModal.email}</p>
-                            {contatoAdd ? (
+                            {possuiContatoAdd ? (
                                 <button id='deletarContato'><FontAwesomeIcon icon={faTrashAlt} /> Remover Contato</button>
+
                             ) : (
                                 <button id='addContato'><FontAwesomeIcon icon={faPlusCircle} /> Adicionar Contato</button>
                             )}
