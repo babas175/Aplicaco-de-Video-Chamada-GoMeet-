@@ -90,4 +90,10 @@
 #buttonAdd{
     width: 10%;
 }
+#deletarContato{
+    background-color: rgb(218, 55, 55);
+}
+#addContato{
+    background-color: rgb(56, 192, 56);
+}
   

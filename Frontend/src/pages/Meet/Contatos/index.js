@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './Contatos.css';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes,faPhone,faInfo,faPlusCircle} from '@fortawesome/free-solid-svg-icons';
+import { faTimes,faPhone,faInfo,faPlusCircle,faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import rest from '../../../api';
 
 function Contatos() {
     const [searchName, setSearchName] = useState('');
     const [contatos, setContatos] = useState([]);
+    const contatoAdd = useState(true);
     const { state } = useLocation();
     
     const handleSearchChange = (event) => {
@@ -122,7 +123,11 @@ function Contatos() {
                         <div className="modal-content">
                             <h2>{addContatoModal.nome}</h2>
                             <p>{addContatoModal.email}</p>
-                            <button id='addContato'><FontAwesomeIcon icon={faPlusCircle} /> Adicionar Contato</button>
+                            {contatoAdd ? (
+                                <button id='deletarContato'><FontAwesomeIcon icon={faTrashAlt} /> Remover Contato</button>
+                            ) : (
+                                <button id='addContato'><FontAwesomeIcon icon={faPlusCircle} /> Adicionar Contato</button>
+                            )}
                         </div>
                     </div>
                 </>
