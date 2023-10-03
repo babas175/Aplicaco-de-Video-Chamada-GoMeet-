@@ -1,0 +1,44 @@
+.video-container{
+    border: 1px solid #ccc; 
+    padding: 20px; 
+    border-radius: 4px; 
+    background-color: #fcfcfc; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    width: 95%;
+    height: 500px;
+}
+.botoes{
+    bottom: 20px;
+    position: relative;
+    padding: 30px;
+    margin: 4px;
+    
+}
+.botao{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-inline: 6px;
+    cursor: pointer;
+    background-color: rgb(206, 41, 41); 
+    transition: background-color 0.4s;
+}
+.botao:hover{
+    background-color: #ccc;
+    color: black;
+}
+.botao-op{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-inline: 6px;
+    cursor: pointer;
+    background-color: white; 
+    transition: background-color 0.4s;
+    color: black;
+}
+.botao-op:hover{
+    background-color: rgb(196, 192, 192);
+}
