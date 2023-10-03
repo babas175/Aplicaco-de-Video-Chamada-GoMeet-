@@ -7,6 +7,7 @@ const login  = require('../controller/login');
 
 
 
+
 router.post('/login', login.login);
 
 router.post('/cadastro', userController.cadastrarUsuario);
