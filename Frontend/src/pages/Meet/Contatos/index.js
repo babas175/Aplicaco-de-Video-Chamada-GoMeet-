@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Contatos.css';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes,faPhone,faInfo,faPlusCircle,faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import { faTimes,faPhone,faInfo,faPlusCircle,faTrashAlt,faEdit} from '@fortawesome/free-solid-svg-icons';
 import rest from '../../../api';
 
 function Contatos() {
@@ -103,7 +103,10 @@ function Contatos() {
                             onClick={handleCloseModal}
                         />
                         <div className="modal-content">
-                            <h2>{contatoModal.nome}</h2>
+                            <div className='editar'>
+                                <h2>{contatoModal.nome}</h2>
+                                <FontAwesomeIcon icon={faEdit} className='editaContato'/>
+                            </div>
                             <p>{contatoModal.email}</p>
                             <button id='addChamada'><FontAwesomeIcon icon={faPhone} /> Iniciar Chamada</button>
                             <button id='detalhes'><FontAwesomeIcon icon={faInfo} /> Ver Perfil</button>

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Contatos from './pages/Meet/Contatos';
+import Chamada from './pages/Meet/Chamada';
 import Meet from './pages/Meet';
 
 const AppRouter = () => {
@@ -13,7 +14,7 @@ const AppRouter = () => {
                 <Route path='/meet/' element={<Meet />}>
                     <Route index element={<Contatos />}/>
                     <Route path='contatos' element={<Contatos />}/>
-                    <Route path='chamada' element={<div>Não implementado</div>}/>
+                    <Route path='chamada' element={<Chamada />}/>
                     <Route path='perfil' element={<div>Não implementado</div>}/>
                     <Route path='historico' element={<div>Não implementado</div>}/>
                 </Route>
