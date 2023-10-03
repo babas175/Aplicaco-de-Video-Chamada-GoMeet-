@@ -7,6 +7,7 @@ const login  = require('../controller/login');
 
 
 
+
 router.post('/login', login.login);
 
 router.post('/cadastro', userController.cadastrarUsuario);
@@ -21,9 +22,9 @@ router.get('/contatos', authenticateJWT, contatoController.listarContatos);
 
 router.get('/Buscarcontatos/:nome', authenticateJWT, contatoController.buscarContatoPorNome);
 
-router.put('/AtualizarContatos/:nome', authenticateJWT, contatoController.atualizarContatoPorNome);
+router.put('/AtualizarContatos/:email', authenticateJWT, contatoController.atualizarContatoPorNome);
 
-router.delete('/DeletarContatos/:nome', authenticateJWT, contatoController.excluirContatoPorNome);
+router.delete('/DeletarContatos/:email', authenticateJWT, contatoController.excluirContatoPorNome);
 
 
 

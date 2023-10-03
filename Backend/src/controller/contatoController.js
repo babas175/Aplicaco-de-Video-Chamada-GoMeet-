@@ -63,10 +63,10 @@ const criarContato = async (req, res) => {
   
 
 const atualizarContatoPorNome = async (req, res) => {
-    const { nome } = req.params;
+    const { email } = req.params;
     try {
       const contato = await Contato.findOne({
-        where: { nome },
+        where: { email },
       });
   
       if (!contato) {
@@ -82,10 +82,10 @@ const atualizarContatoPorNome = async (req, res) => {
   };
   
   const excluirContatoPorNome = async (req, res) => {
-    const { nome } = req.params;
+    const { email } = req.params;
     try {
       const contato = await Contato.findOne({
-        where: { nome },
+        where: { email },
       });
   
       if (!contato) {
