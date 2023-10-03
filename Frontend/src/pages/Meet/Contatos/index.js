@@ -11,6 +11,7 @@ function Contatos() {
     const [nome, setNome] = useState('');
     const [celular, setCelular] = useState('');
     const [email, setEmail] = useState('');
+    const [token, setToken] = useState(null);
     const { state } = useLocation();
     
     const handleSearchChange = (event) => {
@@ -18,11 +19,12 @@ function Contatos() {
     };
 
     useEffect(() => {
-        const token = state?.token;
+        let localToken = state?.token;
+        setToken(localToken);
 
         const PegarOToken = {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${localToken}`,
             },
         };
 
@@ -76,10 +78,33 @@ function Contatos() {
         console.log(contato);
     };
 
-    const handleSubmitContato = (event) => {
+    const handleSubmitContato = async (event) => {
         event.preventDefault();
-        console.log(nome, celular, email);
-        setModalAdd(false);
+
+        const formData = {
+            nome: nome,
+            email: email,
+            celular: celular,
+        };
+
+        try {
+            const response = rest.post('CadastrarContatos', formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+
+            if (response.status !== 201) {
+                console.log('Error ao cadastrar contato.', (await response).statusText);
+            }
+        } catch (error) {
+            console.error('Error ao cadastrar contato:', error);
+        } finally {
+            setCelular('');
+            setNome('');
+            setEmail('');
+            setModalAdd(false);
+        }
     };
 
     return(
