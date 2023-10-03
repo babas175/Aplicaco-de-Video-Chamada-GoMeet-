@@ -22,10 +22,17 @@
   
 .contact-item {
     list-style: none; 
-    padding: 5px; 
+    padding: 10px; 
     background-color: auto;
     color: black;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.button-container{
+    display: flex;
+    gap: 5px;
+    flex-grow: 1;
 }
 
 .modal-backdrop{
@@ -48,9 +55,17 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
+.editar{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    
+}
 #openContato{
     background-color: white;
     border: 1px solid #ccc; 
+    color: #333;
     width: 100%;
 }
 #openContato:hover{
@@ -63,6 +78,11 @@
     cursor: pointer;
     font-size: 1.5rem;
     color: #333; 
+}
+.editaContato{
+    position: relative;
+    
+    cursor: pointer;
 }
 #addChamada{
     color: white;
@@ -79,4 +99,18 @@
 #detalhes:hover{
     background-color: #ebebeb;
 }
-  
+#buttonAdd{
+    width: 10%;
+}
+#deletarContato{
+    background-color: rgb(218, 55, 55);
+}
+#deletarContato:hover{
+    background-color: rgb(218, 39, 39);
+}
+#addContato{
+    background-color: rgb(56, 192, 56);
+}
+#addContato:hover{
+    background-color: rgb(48, 207, 48);
+}  

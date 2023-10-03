@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './Contatos.css';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes,faPhone,faInfo } from '@fortawesome/free-solid-svg-icons';
+import { faTimes,faPhone,faInfo,faPlusCircle,faTrashAlt,faEdit} from '@fortawesome/free-solid-svg-icons';
 import rest from '../../../api';
 
 function Contatos() {
     const [searchName, setSearchName] = useState('');
     const [contatos, setContatos] = useState([]);
+    const possuiContatoAdd = useState(true);
     const { state } = useLocation();
     
     const handleSearchChange = (event) => {
@@ -38,6 +39,9 @@ function Contatos() {
     const [modal, setModal] = useState(false);
     const [contatoModal, setContatoModal] = useState(null);
 
+    const [modalAdd, setModalAdd] = useState(false);
+    const [addContatoModal, setAddContatoModal] = useState(null);
+
     const handleOpenModal = (contato) => {
         setContatoModal(contato);
         setModal(true);
@@ -46,6 +50,16 @@ function Contatos() {
     const handleCloseModal = () => {
         setContatoModal(null);
         setModal(false);
+    };
+
+    const handleOpenAddModal = (contato) => {
+        setAddContatoModal(contato);
+        setModalAdd(true);
+    };
+
+    const handleCloseAddModal = () => {
+        setAddContatoModal(null);
+        setModalAdd(false);
     };
 
     return(
@@ -61,15 +75,21 @@ function Contatos() {
                 />
             </div>
             <div className="contacts-container">
+                
                 <ul>
                     {filteredContacts.map((contato) => (
-                        <button onClick={() => handleOpenModal(contato)} id='openContato'>
+                        <> 
                             <li key={contato.id} className="contact-item">
-                                <strong>
-                                    {contato.nome}
-                                </strong>
+                                <div className='button-container'>
+                                    <button onClick={() => handleOpenModal(contato)} id='openContato'>
+                                        <strong>{contato.nome}</strong>
+                                    </button>
+                                    <button onClick={() => handleOpenAddModal(contato)} id='buttonAdd'>
+                                        <FontAwesomeIcon className='addContato' icon={faPlusCircle} />
+                                    </button>
+                                </div>
                             </li>
-                        </button>
+                        </>
                     ))}
                 </ul>
             </div>
@@ -83,10 +103,35 @@ function Contatos() {
                             onClick={handleCloseModal}
                         />
                         <div className="modal-content">
-                            <h2>{contatoModal.nome}</h2>
+                            <div className='editar'>
+                                <h2>{contatoModal.nome}</h2>
+                                <FontAwesomeIcon icon={faEdit} className='editaContato'/>
+                            </div>
                             <p>{contatoModal.email}</p>
                             <button id='addChamada'><FontAwesomeIcon icon={faPhone} /> Iniciar Chamada</button>
                             <button id='detalhes'><FontAwesomeIcon icon={faInfo} /> Ver Perfil</button>
+                        </div>
+                    </div>
+                </>
+            )}
+            {modalAdd &&(
+                <>
+                    <div className="modal-backdrop"></div>
+                    <div className="modal">
+                        <FontAwesomeIcon
+                            icon={faTimes}
+                            className="close-icon"
+                            onClick={handleCloseAddModal}
+                        />
+                        <div className="modal-content">
+                            <h2>{addContatoModal.nome}</h2>
+                            <p>{addContatoModal.email}</p>
+                            {possuiContatoAdd ? (
+                                <button id='deletarContato'><FontAwesomeIcon icon={faTrashAlt} /> Remover Contato</button>
+
+                            ) : (
+                                <button id='addContato'><FontAwesomeIcon icon={faPlusCircle} /> Adicionar Contato</button>
+                            )}
                         </div>
                     </div>
                 </>
