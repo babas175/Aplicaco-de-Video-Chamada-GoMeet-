@@ -13,7 +13,6 @@ const Contato = sequelize.define('contato', {
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true
   },
   dono: {
     type: DataTypes.STRING,
