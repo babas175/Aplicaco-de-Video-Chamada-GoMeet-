@@ -20,7 +20,7 @@ const criarContato = async (req, res) => {
       if (!req.user) {
         return res.status(401).json({ erro: 'Usuário não autenticado' });
       }
-
+      
       const { email } = req.user;
       if (!email) {
         return res.status(400).json({ erro: 'Email do usuário não encontrado' });
@@ -83,15 +83,16 @@ const atualizarContatoPorNome = async (req, res) => {
   
   const excluirContatoPorNome = async (req, res) => {
     const { email } = req.params;
+    const emailLogado = req.user.email; 
+  
     try {
       const contato = await Contato.findOne({
-        where: { email },
+        where: { email, dono: emailLogado }, 
       });
   
       if (!contato) {
-        return res.status(404).json({ erro: 'Contato não encontrado' });
+        return res.status(404).json({ erro: 'Contato não encontrado !' });
       }
-  
       await contato.destroy();
       res.status(200).json({ mensagem: 'Contato excluído com sucesso' });
     } catch (error) {
