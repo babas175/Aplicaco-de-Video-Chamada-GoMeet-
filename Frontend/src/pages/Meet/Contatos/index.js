@@ -8,6 +8,9 @@ import rest from '../../../api';
 function Contatos() {
     const [searchName, setSearchName] = useState('');
     const [contatos, setContatos] = useState([]);
+    const [nome, setNome] = useState('');
+    const [celular, setCelular] = useState('');
+    const [email, setEmail] = useState('');
     const { state } = useLocation();
     
     const handleSearchChange = (event) => {
@@ -38,7 +41,6 @@ function Contatos() {
     const [modal, setModal] = useState(false);
     const [contatoModal, setContatoModal] = useState(null);
     const [modalAdd, setModalAdd] = useState(false);
-    const [addContatoModal, setAddContatoModal] = useState(null);
 
     const handleOpenModal = (contato) => {
         setContatoModal(contato);
@@ -55,12 +57,29 @@ function Contatos() {
     };
 
     const handleCloseAddModal = () => {
-        setAddContatoModal(null);
         setModalAdd(false);
+    };
+
+    const handleNomeChange = (event) => {
+        setNome(event.target.value);
+    };
+
+    const handleCelularChange = (event) => {
+        setCelular(event.target.value);
+    };
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
     };
 
     const handleDelete = (contato) => {
         console.log(contato);
+    };
+
+    const handleSubmitContato = (event) => {
+        event.preventDefault();
+        console.log(nome, celular, email);
+        setModalAdd(false);
     };
 
     return(
@@ -125,9 +144,45 @@ function Contatos() {
                             onClick={handleCloseAddModal}
                         />
                         <div className="modal-content">
-                            <h2>{addContatoModal.nome}</h2>
-                            <p>{addContatoModal.email}</p>
-                            <button className='addContato'><FontAwesomeIcon icon={faPlusCircle} /> Adicionar Contato</button>
+                            <h2>Novo Contato</h2>
+                            <form onSubmit={handleSubmitContato}>
+                                <div className="input-group">
+                                    <input
+                                        type="text"
+                                        id="nome"
+                                        required
+                                        value={nome}
+                                        onChange={handleNomeChange}
+                                        placeholder='Nome'
+                                    />
+                                </div>
+                                <div className="input-group">
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        value={email}
+                                        required
+                                        onChange={handleEmailChange}
+                                        placeholder='Email'
+                                    />
+                                </div>
+                                <div className="input-group">
+                                    <input
+                                        type="text"
+                                        id="celular"
+                                        value={celular}
+                                        required
+                                        onChange={handleCelularChange}
+                                        placeholder='Celular'
+                                    />
+                                </div>
+                                <button 
+                                    className='addContato'
+                                    type='submit'
+                                >
+                                    <FontAwesomeIcon icon={faPlusCircle} /> Adicionar
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </>
