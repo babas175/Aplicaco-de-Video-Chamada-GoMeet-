@@ -74,8 +74,22 @@ function Contatos() {
         setEmail(event.target.value);
     };
 
-    const handleDelete = (contato) => {
-        console.log(contato);
+    const handleDelete = async (contato) => {
+        try {
+            const response = await rest.delete(`DeletarContatos/${contato.email}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+
+            if (response.status !== 200) {
+                console.log('Error ao remover contato.', (await response).statusText);
+            } else {
+                alert(`${contato.nome} foi deletado com sucesso`);
+            }
+        } catch (error) {
+            console.error('Error ao remover contato:', error);
+        }
     };
 
     const handleSubmitContato = async (event) => {
