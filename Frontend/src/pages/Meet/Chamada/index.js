@@ -14,6 +14,9 @@ function Chamada(){
                 <button className='botao'><FontAwesomeIcon icon={faClose} /></button>
                 <button className='botao-op'><FontAwesomeIcon icon={faBars} /></button>
             </div>
+            <div className='chat'>
+                <input type='text' placeholder='Envie sua mensagem' className='mensagem'></input>
+            </div>
         </>
     );
 }
